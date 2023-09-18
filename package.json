@@ -1,0 +1,16 @@
+{
+  "name": "elearn",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "pnpm run dc:db && turbo run dev",
+    "dc:db": "cd docker && docker-compose up -d"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^1.10.14"
+  }
+}
