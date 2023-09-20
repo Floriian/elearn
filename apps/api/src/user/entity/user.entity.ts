@@ -1,4 +1,4 @@
-import { AfterLoad, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { AfterLoad, Column, Entity, PrimaryGeneratedColumn, Repository } from "typeorm";
 
 @Entity()
 export class User {
@@ -10,8 +10,11 @@ export class User {
 
     @Column()
     lastName: string;
+
     @AfterLoad()
-    name() {
+    getName() {
         return this.firstName + this.lastName;
-    }
+    }    
 }
+
+export type UserRepository = Repository<User>;
