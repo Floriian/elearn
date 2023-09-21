@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom"
 function App() {
   return (
     <Routes>
-      <Route index element={<Homepage />}></Route>
+      <Route index element={<Homepage />} />
     </Routes>
   )
 }
