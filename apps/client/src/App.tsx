@@ -1,14 +1,11 @@
-import { Button } from 'antd'
-import { useAuth0 } from '@auth0/auth0-react'
+import { Homepage } from "@/features"
+import { Route, Routes } from "react-router-dom"
 
 function App() {
-  const { loginWithRedirect, user } = useAuth0();
   return (
-    <>
-      <Button onClick={() => loginWithRedirect()}>Login</Button>
-      {user ? <p>{user.email}</p> : ''}
-
-    </>
+    <Routes>
+      <Route index element={<Homepage />}></Route>
+    </Routes>
   )
 }
 
