@@ -1,1 +1,2 @@
-export * from ".";
+export * from "./AuthCard";
+export * from "./AuthPage"
