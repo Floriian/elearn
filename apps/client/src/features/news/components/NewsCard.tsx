@@ -4,7 +4,6 @@ import { NewsModal } from "@/features/news/components/NewsModal"
 import { formatDate } from "@/utils"
 import { Button } from "antd"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 type Props = {
     news: News
@@ -12,7 +11,6 @@ type Props = {
 
 export function NewsCard({ news }: Props) {
     const [open, setOpen] = useState<boolean>(false);
-    const navigate = useNavigate()
     return (
         <>
             <Card
