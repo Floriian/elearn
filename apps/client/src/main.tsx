@@ -5,13 +5,16 @@ import { Auth0Context } from "@/contexts"
 import { BrowserRouter } from 'react-router-dom'
 import { store } from '@/app'
 import { Provider } from "react-redux"
+import { AntdTheme } from '@/theme/AntdTheme.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Auth0Context>
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <AntdTheme>
+            <App />
+          </AntdTheme>
         </BrowserRouter>
       </Provider>
     </Auth0Context>
