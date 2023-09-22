@@ -8,12 +8,14 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import { ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { News } from '@/news/entities/news.entity';
+import { JwtGuard } from '@/guards';
 
 @Controller('news')
 @ApiTags('news')
@@ -28,6 +30,7 @@ export class NewsController {
     description: 'Returns a news entity.',
     type: News,
   })
+  @UseGuards(JwtGuard)
   create(@Body() createNewsDto: CreateNewsDto) {
     return this.newsService.create(createNewsDto);
   }
