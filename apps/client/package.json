@@ -11,6 +11,7 @@
     "typesafe-i18n": "typesafe-i18n"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@auth0/auth0-react": "^2.2.1",
     "@reduxjs/toolkit": "^1.9.5",
     "antd": "^5.9.1",
