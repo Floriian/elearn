@@ -14,12 +14,13 @@ export class NewsService {
     return news;
   }
 
-  findAll() {
-    return `This action returns all news`;
+  async findAll() {
+    return await this.newsRepository.find({ take: 10 });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} news`;
+  async findOne(id: number) {
+    const oneNews = await this.newsRepository.findOneBy({ id });
+    return oneNews;
   }
 
   update(id: number, updateNewsDto: UpdateNewsDto) {

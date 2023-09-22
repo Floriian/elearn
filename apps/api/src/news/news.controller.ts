@@ -13,7 +13,12 @@ import {
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
-import { ApiCreatedResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { News } from '@/news/entities/news.entity';
 import { JwtGuard } from '@/guards';
 
@@ -30,12 +35,18 @@ export class NewsController {
     description: 'Returns a news entity.',
     type: News,
   })
-  @UseGuards(JwtGuard)
   create(@Body() createNewsDto: CreateNewsDto) {
     return this.newsService.create(createNewsDto);
   }
 
   @Get()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Return all news from database.' })
+  @ApiOkResponse({
+    status: HttpStatus.OK,
+    description: 'Returns a news entity.',
+    type: News,
+  })
   findAll() {
     return this.newsService.findAll();
   }
