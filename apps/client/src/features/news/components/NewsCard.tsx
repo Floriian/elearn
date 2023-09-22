@@ -1,7 +1,5 @@
-import { Card, Title } from "@/components"
-import { EllipsisOutlined } from "@ant-design/icons"
+import { Card } from "@/components"
 import { newsList } from "@/mock"
-import { Space, Tooltip } from "antd"
 import { theme } from "@/theme"
 
 type Props = {
@@ -13,9 +11,6 @@ export function NewsCard({ news }: Props) {
         <Card
             actions={[
                 <p style={{ color: theme.token?.colorPrimary, fontWeight: 'bold' }}>
-                    <span>
-                        <EllipsisOutlined title="!Show more!" />
-                    </span>
                     Show More
                 </p>
             ]}
