@@ -45,15 +45,15 @@ export class NewsController {
   @ApiOkResponse({
     status: HttpStatus.OK,
     description: 'Returns a news entity.',
-    type: News,
+    type: [News],
   })
   findAll() {
-    return this.newsService.findAll();
+    return this.newsService.findAll(false);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.newsService.findOne(+id);
+    return this.newsService.findOne(+id, false);
   }
 
   @Patch(':id')

@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateNewsDto {
   @ApiProperty({
@@ -17,4 +17,9 @@ export class CreateNewsDto {
   @IsString()
   @IsNotEmpty()
   text: string;
+
+  @ApiProperty({ name: 'private', type: Boolean, default: false })
+  @IsBoolean()
+  @IsOptional()
+  private: boolean;
 }

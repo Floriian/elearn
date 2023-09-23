@@ -31,6 +31,10 @@ export class News {
   @Column()
   text: string;
 
+  @ApiProperty({ title: 'private', type: Boolean })
+  @Column({ default: false })
+  private: boolean;
+
   @ApiProperty({
     title: 'createdAt',
     type: Date,

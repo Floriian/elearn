@@ -14,12 +14,20 @@ export class NewsService {
     return news;
   }
 
-  async findAll() {
-    return await this.newsRepository.find({ take: 10 });
+  async findAll(isPrivate: boolean) {
+    return await this.newsRepository.find({
+      where: {
+        private: isPrivate,
+      },
+      take: 10,
+    });
   }
 
-  async findOne(id: number) {
-    const oneNews = await this.newsRepository.findOneBy({ id });
+  async findOne(id: number, isPrivate: boolean) {
+    const oneNews = await this.newsRepository
+      .createQueryBuilder()
+      .select('*')
+      .where('private = :private', { private: isPrivate });
     return oneNews;
   }
 
