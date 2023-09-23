@@ -27,7 +27,8 @@ export class NewsService {
     const oneNews = await this.newsRepository
       .createQueryBuilder()
       .select('*')
-      .where('private = :private', { private: isPrivate });
+      .where('private = :private', { private: isPrivate })
+      .getRawOne();
     return oneNews;
   }
 

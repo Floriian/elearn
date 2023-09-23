@@ -4,13 +4,13 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 
 export const newsPublicApi = createApi({
   reducerPath: "newsPublicApi",
-  baseQuery: axiosBaseQuery({ path: "/news" }),
+  baseQuery: axiosBaseQuery({ url: "/news" }),
   endpoints: (builder) => ({
     getAllNews: builder.query<News[], void>({
       query: () => ({ method: "get" }),
     }),
-    getNews: builder.query<News, string>({
-      query: (id) => ({ url: `/${id}`, method: "get" }),
+    getNews: builder.query<News, number>({
+      query: (id) => ({ path: id, method: "get" }),
     }),
   }),
 });
