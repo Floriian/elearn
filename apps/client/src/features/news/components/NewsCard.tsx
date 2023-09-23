@@ -2,7 +2,7 @@ import { Card } from "@/components"
 import { News } from "@/features"
 import { NewsModal } from "@/features/news/components/NewsModal"
 import { formatDate } from "@/utils"
-import { Button } from "antd"
+import { Button, Col } from "antd"
 import { useState } from "react"
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 export function NewsCard({ news }: Props) {
     const [open, setOpen] = useState<boolean>(false);
     return (
-        <>
+        <Col span={24}>
             <Card
                 actions={[
                     <Button onClick={() => setOpen(true)}>
@@ -27,6 +27,6 @@ export function NewsCard({ news }: Props) {
                 <p>{news.text.slice(0, 150)[0]}</p>
             </Card>
             {open ? <NewsModal id={news.id} open={open} setOpen={setOpen} /> : null}
-        </>
+        </Col>
     )
 }
