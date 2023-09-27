@@ -1,5 +1,5 @@
 import { AuthProvider } from "@/contexts"
-import { AuthPage } from "@/features"
+import { AuthPage, Homepage } from "@/features"
 import { Route, Routes } from "react-router-dom"
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <Routes>
       <Route element={<AuthProvider />}>
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/" element={<h1>Homepage</h1>} />
+        <Route path="/" element={<Homepage />} />
       </Route>
     </Routes>
   )
