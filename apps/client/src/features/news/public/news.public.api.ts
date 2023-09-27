@@ -4,10 +4,10 @@ import { News } from "@/features";
 export const newsPublicApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getPublicNews: builder.query<News[], void>({
-      query: () => ({ method: "GET", path: "/news" }),
+      query: () => ({ method: "GET", url: "/news" }),
     }),
     getPublicNewsById: builder.query<News, number>({
-      query: (id: number) => ({ method: "GET", path: `/news/${id}` }),
+      query: (id: number) => ({ method: "GET", url: `/news/${id}` }),
     }),
   }),
   overrideExisting: false,
