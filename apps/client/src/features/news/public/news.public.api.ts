@@ -1,17 +1,17 @@
+import { api } from "@/app";
 import { News } from "@/features";
-import { axiosBaseQuery } from "@/utils";
-import { createApi } from "@reduxjs/toolkit/query/react";
 
-export const newsPublicApi = createApi({
-  reducerPath: "newsPublicApi",
-  baseQuery: axiosBaseQuery({ url: "/news" }),
+export const newsPublicApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getAllNews: builder.query<News[], void>({
-      query: () => ({ method: "get" }),
+    getPublicNews: builder.query<News[], void>({
+      query: () => ({ method: "GET", path: "/news" }),
     }),
-    getNews: builder.query<News, number>({
-      query: (id) => ({ path: id, method: "get" }),
+    getPublicNewsById: builder.query<News, number>({
+      query: (id: number) => ({ method: "GET", path: `/news/${id}` }),
     }),
   }),
+  overrideExisting: false,
 });
-export const { useGetAllNewsQuery, useGetNewsQuery } = newsPublicApi;
+
+export const { useGetPublicNewsByIdQuery, useGetPublicNewsQuery } =
+  newsPublicApi;

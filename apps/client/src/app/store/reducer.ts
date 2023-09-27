@@ -1,5 +1,5 @@
-import { newsPublicApi } from "@/features";
+import { api } from "@/app/store/api";
 import { combineReducers } from "@reduxjs/toolkit";
 export const rootReducer = combineReducers({
-  [newsPublicApi.reducerPath]: newsPublicApi.reducer,
+  [api.reducerPath]: api.reducer,
 });
