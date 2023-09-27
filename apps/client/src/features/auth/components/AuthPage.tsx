@@ -1,4 +1,4 @@
-import { Logo, Side } from "@/components";
+import { Container, Logo, Side } from "@/components";
 import { AuthCard, NewsList } from "@/features";
 import { Divider, Space } from "antd";
 import { useEffect } from "react";
@@ -15,7 +15,9 @@ export function AuthPage() {
                 </Space>
             </Space>
             <Divider />
-            <Side left={<NewsList />} right={<NewsList />} />
+            <Container>
+                <Side left={<NewsList />} right={<NewsList />} />
+            </Container>
         </>
     )
 }
