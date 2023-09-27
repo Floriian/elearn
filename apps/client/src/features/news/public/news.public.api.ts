@@ -11,6 +11,7 @@ export const newsPublicApi = api.injectEndpoints({
     }),
   }),
   overrideExisting: false,
+
 });
 
 export const { useGetPublicNewsByIdQuery, useGetPublicNewsQuery } =

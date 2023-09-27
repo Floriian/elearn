@@ -26,7 +26,7 @@ export function NewsCard({ news }: Props) {
                 />
                 <p>{news.text.slice(0, 150)[0]}</p>
             </Card>
-            {open ? <NewsModal id={news.id} open={open} setOpen={setOpen} /> : null}
+            {open ? <NewsModal data={news} open={open} setOpen={setOpen} /> : null}
         </Col>
     )
 }

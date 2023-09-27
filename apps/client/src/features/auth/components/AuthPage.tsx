@@ -1,9 +1,7 @@
 import { Container, Logo, Side } from "@/components";
-import { AuthCard, NewsList } from "@/features";
+import { AuthCard, PublicNews } from "@/features";
 import { Divider, Space } from "antd";
-import { useEffect } from "react";
 export function AuthPage() {
-    useEffect(() => console.log("AUTHPAGE"))
     return (
         <>
             <Space direction="vertical">
@@ -16,7 +14,7 @@ export function AuthPage() {
             </Space>
             <Divider />
             <Container>
-                <Side left={<NewsList />} right={<NewsList />} />
+                <Side left={<PublicNews.List />} right={<PublicNews.List />} />
             </Container>
         </>
     )

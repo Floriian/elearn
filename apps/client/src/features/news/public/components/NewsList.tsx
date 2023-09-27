@@ -1,7 +1,6 @@
 import { Title } from "@/components";
 import { NewsCard, useGetPublicNewsQuery } from "@/features"
 import { Row } from "antd";
-import { useEffect } from "react";
 export function NewsList() {
     const { data: newsList } = useGetPublicNewsQuery();
     return (
