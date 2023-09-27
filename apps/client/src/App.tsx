@@ -1,4 +1,4 @@
-import { AuthProvider } from "@/contexts"
+import { AuthProvider } from "@/features"
 import { AuthPage, Homepage } from "@/features"
 import { Route, Routes } from "react-router-dom"
 
