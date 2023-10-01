@@ -1,5 +1,5 @@
 import { store } from "@/app";
-import { AuthProvider } from "@/features"
+import { Layout } from "@/components";
 import { AuthPage, Homepage } from "@/features"
 import { injectStore } from "@/utils";
 import { Route, Routes } from "react-router-dom"
@@ -9,7 +9,7 @@ function App() {
   return (
     <Routes>
       <Route path="/auth" element={<AuthPage />} />
-      <Route element={<AuthProvider />}>
+      <Route element={<Layout />}>
         <Route path="/" element={<Homepage />} />
       </Route>
     </Routes>
