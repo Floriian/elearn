@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { store } from '@/app'
 import { Provider } from "react-redux"
 import { AntdTheme } from '@/theme'
+import { UserLoader } from '@/features'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Provider store={store}>
         <BrowserRouter>
           <AntdTheme>
-            <App />
+            <UserLoader>
+              <App />
+            </UserLoader>
           </AntdTheme>
         </BrowserRouter>
       </Provider>

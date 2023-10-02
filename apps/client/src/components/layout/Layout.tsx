@@ -1,23 +1,14 @@
 import { useAppDispatch } from "@/app";
 import { setUser } from "@/features";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
 
-export function Layout() {
-    const { getAccessTokenSilently, user, isAuthenticated } = useAuth0();
+type Props = {
+    children: React.ReactNode;
+}
 
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            getAccessTokenSilently().then((token) => {
-                dispatch(setUser({ ...user, accessToken: token }))
-            })
-        }
-    }, [isAuthenticated])
-
+export function Layout({ children }: Props) {
     return (
-        <Outlet />
+        <>{children}</>
     )
 }

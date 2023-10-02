@@ -9,6 +9,6 @@ export const getUserAccessToken = createSelector(
   rootSelector,
   (state) => state.accessToken,
 );
-
+export const getUser = createSelector(rootSelector, (state) => state);
 export const getUserName = createSelector(rootSelector, (state) => state.name);
 export const getUserSub = createSelector(rootSelector, (state) => state.sub);
