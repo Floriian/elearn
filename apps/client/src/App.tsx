@@ -8,9 +8,7 @@ function App() {
   return (
     <Routes>
       <Route path="/auth" element={<AuthPage />} />
-      <Route element={<ProtectedRoutes />}>
-        <Route path="/" element={<Homepage />} />
-      </Route>
+      <Route path="/" element={<Homepage />} />
     </Routes>
   )
 }

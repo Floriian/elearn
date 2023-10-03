@@ -6,20 +6,17 @@ import { BrowserRouter } from 'react-router-dom'
 import { store } from '@/app'
 import { Provider } from "react-redux"
 import { AntdTheme } from '@/theme'
-import { UserLoader } from '@/features'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Auth0Context>
-      <Provider store={store}>
-        <BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Auth0Context>
           <AntdTheme>
-            <UserLoader>
-              <App />
-            </UserLoader>
+            <App />
           </AntdTheme>
-        </BrowserRouter>
-      </Provider>
-    </Auth0Context>
+        </Auth0Context>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
 )
