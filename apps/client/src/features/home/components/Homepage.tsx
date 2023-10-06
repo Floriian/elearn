@@ -1,8 +1,7 @@
-import { withAuth } from "@/features/auth/components/withAuth";
-import { useUser } from "@/features/user/user.hooks";
+import { useUser } from "@/features";
 import { Space } from "antd";
 
-export function Page() {
+export function Homepage() {
     const user = useUser();
     return (
         <Space direction="vertical">
@@ -14,5 +13,3 @@ export function Page() {
         </Space>
     )
 }
-
-export const Homepage = withAuth(Page);
