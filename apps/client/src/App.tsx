@@ -1,5 +1,6 @@
 import { store } from "@/app";
-import { AuthPage, Homepage, ProtectedRoutes } from "@/features"
+import { AuthPage, Homepage } from "@/features"
+import { ProtectedRoutes } from "@/features/auth/components/ProtectedRoutes";
 import { injectStore } from "@/utils";
 import { Route, Routes } from "react-router-dom"
 
@@ -8,7 +9,9 @@ function App() {
   return (
     <Routes>
       <Route path="/auth" element={<AuthPage />} />
-      <Route path="/" element={<Homepage />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/" element={<Homepage />} />
+      </Route>
     </Routes>
   )
 }

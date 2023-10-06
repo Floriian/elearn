@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { store } from '@/app'
 import { Provider } from "react-redux"
 import { AntdTheme } from '@/theme'
+import { UserLoader } from '@/features/user/components/UserLoader.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -1,6 +1,7 @@
+import { withAuth } from "@/features/auth/components/withAuth";
 import { Space } from "antd";
 
-export function Homepage() {
+export function Page() {
     return (
         <Space direction="vertical">
             <Space style={{ marginLeft: '5rem' }}>
@@ -11,3 +12,5 @@ export function Homepage() {
         </Space>
     )
 }
+
+export const Homepage = withAuth(Page);
