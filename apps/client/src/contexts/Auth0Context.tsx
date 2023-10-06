@@ -9,7 +9,6 @@ type Props = {
 }
 
 export function Auth0Context({ children }: Props) {
-
   return (
     <Auth0Provider
       domain={auth0Config.domain}
