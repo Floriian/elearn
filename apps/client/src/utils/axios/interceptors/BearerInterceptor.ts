@@ -5,6 +5,6 @@ export const BearerInterceptor = (
   config: InternalAxiosRequestConfig,
   store: RootState,
 ): InternalAxiosRequestConfig => {
-  config.headers.Authorization = "Bearer " + store.user.accessToken;
+  config.headers.Authorization = "Bearer " + store?.user?.accessToken;
   return config;
 };

@@ -5,6 +5,8 @@ export const UserInterceptor = (
   config: InternalAxiosRequestConfig,
   store: RootState,
 ): InternalAxiosRequestConfig => {
-  config.headers["identifier"] = store.user.email;
+  if (store) {
+    config.headers["identifier"] = store?.user?.email;
+  }
   return config;
 };
