@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { NewsModule } from './news/news.module';
 import { CreateUserMiddleware } from '@/middlewares/user.middleware';
 import { User } from '@/user/entity/user.entity';
+import { CourseModule } from './course/course.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { User } from '@/user/entity/user.entity';
     ConfigModule.forRoot(),
     UserModule,
     NewsModule,
+    CourseModule,
   ],
   controllers: [],
   providers: [],

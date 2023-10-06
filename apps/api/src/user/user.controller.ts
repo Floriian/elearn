@@ -1,16 +1,14 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
+import { JwtGuard } from '@/guards';
 
+@UseGuards(JwtGuard)
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  async createUser(@Body() body: any) {
-    try {
-      return await this.userService.create(body);
-    } catch(e) {
-      console.log(e);
-    }
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.userService.findUserById(+id);
   }
 }
