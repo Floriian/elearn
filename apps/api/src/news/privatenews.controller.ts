@@ -24,7 +24,6 @@ export class PrivateNewsController {
     description: 'Returns all news in the database, with private = true',
     type: [News],
   })
-  @UseGuards(JwtGuard)
   findAll() {
     return this.newsService.findAll(true);
   }

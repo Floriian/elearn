@@ -12,6 +12,7 @@ export const typeormConfig: TypeOrmModuleAsyncOptions = {
       entities: ['dist/**/**/*.entity{.ts,.js}'],
       migrations: ['dist/migrations/*{.ts,.js}'],
       synchronize: true,
+      logger: 'advanced-console',
     };
   },
   inject: [ConfigService],

@@ -15,12 +15,12 @@ export class NewsService {
   }
 
   async findAll(isPrivate: boolean) {
-    return await this.newsRepository.find({
-      where: {
-        private: isPrivate,
-      },
-      take: 10,
+    console.log(isPrivate);
+    const allNews = await this.newsRepository.findBy({
+      private: isPrivate,
     });
+
+    return allNews;
   }
 
   async findOne(id: number, isPrivate: boolean) {

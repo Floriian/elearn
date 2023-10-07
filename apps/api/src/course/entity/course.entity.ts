@@ -7,6 +7,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Repository,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -37,3 +38,5 @@ export class Course {
   })
   updatedAt: Date;
 }
+
+export type CourseRepoistory = Repository<Course>;

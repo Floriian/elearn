@@ -8,6 +8,8 @@ import { NewsModule } from './news/news.module';
 import { CreateUserMiddleware } from '@/middlewares/user.middleware';
 import { User } from '@/user/entity/user.entity';
 import { CourseModule } from './course/course.module';
+import { RouterModule } from '@nestjs/core';
+import { PrivateNewsModule } from './private-news/private-news.module';
 
 @Module({
   imports: [
@@ -17,7 +19,14 @@ import { CourseModule } from './course/course.module';
     ConfigModule.forRoot(),
     UserModule,
     NewsModule,
+    RouterModule.register([
+      {
+        path: '/news',
+        module: NewsModule,
+      },
+    ]),
     CourseModule,
+    PrivateNewsModule,
   ],
   controllers: [],
   providers: [],
