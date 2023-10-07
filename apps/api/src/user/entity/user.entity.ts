@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn, Repository } from 'typeorm';
+import 'reflect-metadata';
+import { Course } from '@/course/entity/course.entity';
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Repository,
+} from 'typeorm';
 
 /**
  * Represents a user entity in the database.
@@ -28,6 +36,9 @@ export class User {
    */
   @Column()
   sub: string;
+
+  @OneToMany(() => Course, (course) => course.createdBy)
+  courses: Course[];
 }
 
 export type UserRepository = Repository<User>;
