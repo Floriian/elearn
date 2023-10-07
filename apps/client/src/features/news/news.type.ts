@@ -3,4 +3,5 @@ export interface News {
   title: string;
   text: string;
   createdAt: Date;
+  private: boolean;
 }
