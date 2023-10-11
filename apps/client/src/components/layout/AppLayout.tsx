@@ -71,25 +71,18 @@ export function AppLayout({ children }: Props) {
         <Layout>
             <AppHeader />
             <Layout>
-                <Sider
-                    collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}
+                <Sider collapsible collapsed={collapsed} onCollapse={(val) => setCollapsed(val)}
                     style={{
-                        overflow: 'auto',
                         height: '100vh',
-                        position: 'fixed',
-                        left: 0,
-                        top: '64px'
-                    }}
-                >
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+                        position: 'sticky',
+                    }}>
+                    <Menu theme="dark" defaultSelectedKeys={['']} mode='inline' items={items} />
                 </Sider>
-                <Layout className="site-layout" style={{ marginLeft }}>
-                    <Content style={{ overflow: 'initial' }}>
-                        <div style={{ padding: 24, textAlign: 'center', background: colorBgContainer, display: 'flex', justifyContent: 'center' }}>
-                            {children}
-                        </div>
-                    </Content>
-                </Layout>
+                <Content style={{ margin: '0 16px' }}>
+                    <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
+                        {children}
+                    </div>
+                </Content>
             </Layout>
         </Layout>
     );
