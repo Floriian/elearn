@@ -1,4 +1,5 @@
 import { useAppDispatch } from "@/app";
+import { AppLayout } from "@/components";
 import { setUser } from "@/features";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
@@ -24,5 +25,7 @@ export function ProtectedRoutes() {
 
     }, [isAuthenticated, isLoading])
 
-    return <Outlet />
+    return <AppLayout>
+        <Outlet />
+    </AppLayout>
 }
