@@ -1,9 +1,96 @@
+import React, { useState } from 'react';
+import {
+    AppstoreOutlined,
+    BarChartOutlined,
+    CloudOutlined,
+    LaptopOutlined,
+    NotificationOutlined,
+    ShopOutlined,
+    TeamOutlined,
+    UploadOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+} from '@ant-design/icons';
+import { Breadcrumb, Layout, Menu, MenuProps, theme } from 'antd';
+const { Header, Content, Footer, Sider } = Layout;
+import { AppHeader } from "./AppHeader";
+
+const items = [
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined,
+    BarChartOutlined,
+    CloudOutlined,
+    AppstoreOutlined,
+    TeamOutlined,
+    ShopOutlined,
+].map((icon, index) => ({
+    key: String(index + 1),
+    icon: React.createElement(icon),
+    label: `nav ${index + 1}`,
+}));
+
 type Props = {
     children: React.ReactNode;
-}
+};
+
+const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
+    key,
+    label: `nav ${key}`,
+}));
+
+const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
+    (icon, index) => {
+        const key = String(index + 1);
+
+        return {
+            key: `sub${key}`,
+            icon: React.createElement(icon),
+            label: `subnav ${key}`,
+
+            children: new Array(4).fill(null).map((_, j) => {
+                const subKey = index * 4 + j + 1;
+                return {
+                    key: subKey,
+                    label: `option${subKey}`,
+                };
+            }),
+        };
+    },
+);
 
 export function AppLayout({ children }: Props) {
+    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const {
+        token: { colorBgContainer },
+    } = theme.useToken();
+
+    const marginLeft = collapsed ? 0 : 200;
+
     return (
-        <>{children}</>
-    )
+        <Layout>
+            <AppHeader />
+            <Layout>
+                <Sider
+                    collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}
+                    style={{
+                        overflow: 'auto',
+                        height: '100vh',
+                        position: 'fixed',
+                        left: 0,
+                        top: '64px'
+                    }}
+                >
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} items={items} />
+                </Sider>
+                <Layout className="site-layout" style={{ marginLeft }}>
+                    <Content style={{ overflow: 'initial' }}>
+                        <div style={{ padding: 24, textAlign: 'center', background: colorBgContainer, display: 'flex', justifyContent: 'center' }}>
+                            {children}
+                        </div>
+                    </Content>
+                </Layout>
+            </Layout>
+        </Layout>
+    );
 }
