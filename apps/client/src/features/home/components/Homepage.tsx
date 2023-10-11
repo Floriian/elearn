@@ -1,9 +1,8 @@
 import { useUser } from "@/features";
 import { PrivateNews } from "@/features/news/private/components";
-import { withUser } from "@/features/user/components/withUser";
 import { Space } from "antd";
 
-function Page() {
+export function Homepage() {
     const user = useUser();
     return (
         <>
@@ -17,5 +16,3 @@ function Page() {
         </>
     )
 }
-
-export const Homepage = withUser({ Component: Page });
