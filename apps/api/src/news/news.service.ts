@@ -15,7 +15,6 @@ export class NewsService {
   }
 
   async findAll(isPrivate: boolean) {
-    console.log(isPrivate);
     const allNews = await this.newsRepository.findBy({
       private: isPrivate,
     });

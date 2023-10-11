@@ -1,13 +1,30 @@
-import { Module } from '@nestjs/common';
-import { NewsService } from './news.service';
-import { NewsController } from './news.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { News } from '@/news/entities/news.entity';
-import { PrivateNewsController } from '@/news/privatenews.controller';
+import { NewsService } from '@/news/news.service';
+import { PrivateNewsModule } from '@/news/private/privateNews.module';
+import { PublicNewsModule } from '@/news/public/publicNews.module';
+import { Module } from '@nestjs/common';
+import { RouterModule } from '@nestjs/core'; // Correct import
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  controllers: [NewsController, PrivateNewsController],
+  imports: [
+    TypeOrmModule.forFeature([News]),
+    RouterModule.register([
+      {
+        path: 'news',
+        children: [
+          {
+            path: 'public',
+            module: PublicNewsModule,
+          },
+          {
+            path: 'private',
+            module: PrivateNewsModule,
+          },
+        ],
+      },
+    ]),
+  ],
   providers: [NewsService],
-  imports: [TypeOrmModule.forFeature([News])],
 })
 export class NewsModule {}

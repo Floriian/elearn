@@ -8,7 +8,9 @@ export function NewsList() {
     useEffect(() => console.log(data), [data])
     return (
         <Row gutter={[12, 12]}>
-
+            {data?.map((news) => (
+                <NewsCard news={news} key={news.id} />
+            ))}
         </Row>
     )
 }

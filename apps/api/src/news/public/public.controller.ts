@@ -10,9 +10,7 @@ import {
   HttpStatus,
   UseGuards,
 } from '@nestjs/common';
-import { NewsService } from './news.service';
-import { CreateNewsDto } from './dto/create-news.dto';
-import { UpdateNewsDto } from './dto/update-news.dto';
+
 import {
   ApiCreatedResponse,
   ApiOkResponse,
@@ -21,10 +19,13 @@ import {
 } from '@nestjs/swagger';
 import { News } from '@/news/entities/news.entity';
 import { JwtGuard } from '@/guards';
+import { NewsService } from '@/news/news.service';
+import { CreateNewsDto } from '@/news/dto/create-news.dto';
+import { UpdateNewsDto } from '@/news/dto/update-news.dto';
 
-@Controller('news')
-@ApiTags('news')
-export class NewsController {
+@Controller()
+@ApiTags('Public news')
+export class PublicNewsController {
   constructor(private readonly newsService: NewsService) {}
 
   @Post()

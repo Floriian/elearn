@@ -4,12 +4,13 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '@/auth/auth.module';
 import { UserModule } from './user/user.module';
-import { NewsModule } from './news/news.module';
 import { CreateUserMiddleware } from '@/middlewares/user.middleware';
 import { User } from '@/user/entity/user.entity';
 import { CourseModule } from './course/course.module';
 import { RouterModule } from '@nestjs/core';
-import { PrivateNewsModule } from './private-news/private-news.module';
+import { NewsModule } from '@/news/news.module';
+import { PublicNewsModule } from '@/news/public/publicNews.module';
+import { PrivateNewsModule } from '@/news/private/privateNews.module';
 
 @Module({
   imports: [
@@ -18,18 +19,11 @@ import { PrivateNewsModule } from './private-news/private-news.module';
     TypeOrmModule.forFeature([User]),
     ConfigModule.forRoot(),
     UserModule,
-    NewsModule,
-    RouterModule.register([
-      {
-        path: '/news',
-        module: NewsModule,
-      },
-    ]),
-    CourseModule,
     PrivateNewsModule,
+    PublicNewsModule,
+    NewsModule,
+    CourseModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
