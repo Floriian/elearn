@@ -5,7 +5,7 @@ export function Logo() {
     return (
         <Space>
             <img src="/logo.svg" alt="NeptunOnSteroids" />
-            <Title level={3}>Neptun on Steroids</Title>
+            <Title level={3}>ExamX</Title>
         </Space>
     )
 }
