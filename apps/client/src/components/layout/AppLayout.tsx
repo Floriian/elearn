@@ -65,16 +65,12 @@ export function AppLayout({ children }: Props) {
         token: { colorBgContainer },
     } = theme.useToken();
 
-    const marginLeft = collapsed ? 0 : 200;
-
     return (
         <Layout>
             <AppHeader />
             <Layout>
                 <Sider collapsible collapsed={collapsed} onCollapse={(val) => setCollapsed(val)}
                     style={{
-                        height: '100vh',
-                        position: 'sticky',
                     }}>
                     <Menu theme="dark" defaultSelectedKeys={['']} mode='inline' items={items} />
                 </Sider>
