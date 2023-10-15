@@ -71,10 +71,19 @@ export function AppLayout({ children }: Props) {
             <Layout>
                 <Sider collapsible collapsed={collapsed} onCollapse={(val) => setCollapsed(val)}
                     style={{
+                        width: '25%',
+                        overflow: 'auto',
+                        height: '100vh',
+                        position: 'fixed',
+                        left: 0,
                     }}>
                     <Menu theme="dark" defaultSelectedKeys={['']} mode='inline' items={items} />
                 </Sider>
-                <Content style={{ margin: '0 16px' }}>
+                <Content
+                    style={{
+                        overflow: 'auto',
+                        marginLeft: collapsed ? '0.5rem' : '8rem'
+                    }}>
                     <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
                         {children}
                     </div>

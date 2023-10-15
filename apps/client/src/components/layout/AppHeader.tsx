@@ -6,7 +6,7 @@ export function AppHeader() {
             position: 'sticky',
             top: 0,
             zIndex: 1,
-            width: '100',
+            width: 'auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'end'
