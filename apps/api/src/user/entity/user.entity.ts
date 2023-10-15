@@ -6,12 +6,14 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   Repository,
+  Unique,
 } from 'typeorm';
 
 /**
  * Represents a user entity in the database.
  */
 @Entity()
+@Unique('credentials', ['email'])
 export class User {
   /**
    * The unique database ID of the user.
@@ -32,10 +34,13 @@ export class User {
   code: string | null;
 
   /**
-   * The Auth0 sub (subject) identifier associated with the user.
+   * The user's hashed password.
    */
   @Column()
-  sub: string;
+  password: string;
+
+  @Column({ nullable: true })
+  refreshToken: string;
 
   @OneToMany(() => Course, (course) => course.createdBy)
   courses: Course[];

@@ -1,10 +1,21 @@
+import { AccessTokenStrategy } from '@/auth/strategy/accesstoken.strategy';
+import { JwtGuard } from '@/guards';
+import { RefreshTokenGuard } from '@/guards/RefreshToken.guard';
 import { News } from '@/news/entities/news.entity';
 import { NewsService } from '@/news/news.service';
-import { Controller, Get, HttpCode, HttpStatus, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller()
 @ApiTags('Private news')
+@UseGuards(JwtGuard)
 export class PrivateNewsController {
   constructor(private readonly newsService: NewsService) {}
 

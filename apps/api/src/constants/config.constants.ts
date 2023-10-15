@@ -1,2 +1,2 @@
-export const DATABASE_CONFIG = "DATABASE_CONFIG";
-export const AUTH0_CONFIG = "AUTH0_CONFIG";
+export const DATABASE_CONFIG = 'DATABASE_CONFIG';
+export const AUTH_CONFIG = 'AUTH_CONFIG';

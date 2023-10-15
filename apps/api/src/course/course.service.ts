@@ -1,5 +1,5 @@
 import { Course, CourseRepoistory } from '@/course/entity/course.entity';
-import { Auth0Payload } from '@/types';
+import { JwtPayload } from '@/types';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -10,7 +10,7 @@ export class CourseService {
     private readonly courseRepository: CourseRepoistory,
   ) {}
 
-  async findUserCourses(user: Auth0Payload): Promise<Course[]> {
+  async findUserCourses(user: JwtPayload): Promise<Course[]> {
     const courses = await this.courseRepository.find();
     return courses;
   }

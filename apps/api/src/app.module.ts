@@ -26,7 +26,5 @@ import { PrivateNewsModule } from '@/news/private/privateNews.module';
   ],
 })
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(CreateUserMiddleware).forRoutes('*');
-  }
+  configure(consumer: MiddlewareConsumer) {}
 }

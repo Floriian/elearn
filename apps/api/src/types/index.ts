@@ -1,1 +1,1 @@
-export * from "./Auth0Payload"
+export * from './JwtPayload';

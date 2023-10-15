@@ -11,6 +11,8 @@ export class CreateUserMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
     const { identifier } = req.headers;
 
+    console.log(req.headers);
+
     if (identifier && identifier != '') {
       const isExistingUser = await this.userRepository.findBy({
         email: identifier as string,
