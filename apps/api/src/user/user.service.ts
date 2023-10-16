@@ -44,7 +44,7 @@ export class UserService {
   async update(
     id: number,
     updateUserDto: UpdateUserDto,
-  ): Promise<Omit<User, 'password' | 'confirmPassword'>> {
+  ): Promise<Pick<User, 'id' | 'email'>> {
     await this.findOne(id);
 
     const updatedUser = await this.userRepository.update(

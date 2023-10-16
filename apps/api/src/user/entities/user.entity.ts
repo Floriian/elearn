@@ -24,16 +24,24 @@ export class User {
 
   @BeforeInsert()
   @BeforeUpdate()
-  private async hashPassword() {
+  private async hash() {
     const hash = await argon.hash(this.password);
     this.password = hash;
+
+    if (this.refreshToken) {
+      const tokenHash = await argon.hash(this.refreshToken);
+      this.refreshToken = tokenHash;
+    }
   }
 
   @ApiProperty({
     description: "User's password. It is hashed when creating an user.",
   })
-  @Column({ select: false })
+  @Column()
   password: string;
+
+  @Column({ nullable: true })
+  refreshToken: string;
 }
 
 export type UserRepository = Repository<User>;
