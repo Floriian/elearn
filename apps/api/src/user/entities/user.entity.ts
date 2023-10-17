@@ -27,11 +27,6 @@ export class User {
   private async hash() {
     const hash = await argon.hash(this.password);
     this.password = hash;
-
-    if (this.refreshToken) {
-      const tokenHash = await argon.hash(this.refreshToken);
-      this.refreshToken = tokenHash;
-    }
   }
 
   @ApiProperty({

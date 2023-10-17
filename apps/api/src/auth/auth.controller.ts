@@ -6,8 +6,10 @@ import { Request } from 'express';
 import { RTGuard } from 'src/auth/guards/rt.guard';
 import { PublicMethod } from 'src/auth/decorators';
 import { GetUser } from 'src/auth/decorators/getuser.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('Auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -28,6 +30,7 @@ export class AuthController {
     this.authService.logout(request.user['sub']);
   }
 
+  @PublicMethod()
   @UseGuards(RTGuard)
   @Get('refresh')
   refreshTokens(@Req() request: Request) {

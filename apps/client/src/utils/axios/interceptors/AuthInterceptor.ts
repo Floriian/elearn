@@ -1,7 +1,7 @@
 import { RootState } from "@/app";
 import { InternalAxiosRequestConfig } from "axios";
 
-export const BearerInterceptor = (
+export const AuthInterceptor = (
   config: InternalAxiosRequestConfig,
   store: RootState,
 ): InternalAxiosRequestConfig => {

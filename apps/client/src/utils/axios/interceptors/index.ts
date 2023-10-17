@@ -1,2 +1,2 @@
-export * from "./BearerInterceptor";
+export * from "./AuthInterceptor";
 export * from "./UserInterceptor";

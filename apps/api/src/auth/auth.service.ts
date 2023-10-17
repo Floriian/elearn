@@ -56,8 +56,9 @@ export class AuthService {
   }
 
   async updateRefreshToken(id: number, token: string) {
+    const hashedToken = await argon.hash(token);
     await this.userService.update(id, {
-      refreshToken: token,
+      refreshToken: hashedToken,
     });
   }
 

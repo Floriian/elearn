@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ATGuard } from 'src/auth/guards/at.guard';
+import { RTGuard } from 'src/auth/guards/rt.guard';
 
 @Module({
   imports: [

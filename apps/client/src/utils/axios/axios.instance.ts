@@ -1,5 +1,5 @@
 import { RootState } from "@/app";
-import { BearerInterceptor, UserInterceptor } from "@/utils/axios/interceptors";
+import { AuthInterceptor, UserInterceptor } from "@/utils/axios/interceptors";
 import axios from "axios";
 
 let store: RootState;
@@ -15,7 +15,7 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 axiosInstance.interceptors.request.use((config) =>
-  BearerInterceptor(config, store),
+  AuthInterceptor(config, store),
 );
 axiosInstance.interceptors.request.use((config) =>
   UserInterceptor(config, store),
