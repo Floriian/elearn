@@ -1,4 +1,4 @@
-import { api } from "@/app/store/api";
+import { api } from "./api";
 import { authSlice } from "@/features/auth/auth.slice";
 import { userSlice } from "@/features/user/user.slice";
 import { combineReducers } from "@reduxjs/toolkit";
