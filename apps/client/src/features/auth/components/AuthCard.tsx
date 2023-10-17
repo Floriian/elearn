@@ -47,8 +47,8 @@ export function AuthCard() {
                         labelCol={{ span: 6 }}
                         wrapperCol={{ span: 20 }}
                         onSubmitCapture={handleSubmit(submitData)}>
-                        <Space direction="vertical" style={{ width: '100%', marginBottom: '1rem' }}>
-                            <Alert type="error" message={error?.message} style={{ display: error ? 'block' : 'none' }} />
+                        <Space direction="vertical" style={{ width: '100%', marginBottom: '1rem', display: error ? 'block' : 'none' }}>
+                            <Alert type="error" message={error?.message} />
                         </Space>
                         <Form.Item
                             label="Email"
