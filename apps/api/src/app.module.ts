@@ -6,7 +6,9 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { ATGuard } from 'src/auth/guards/at.guard';
-import { RTGuard } from 'src/auth/guards/rt.guard';
+import { PrivateNewsModule } from 'src/news/private/privateNews.module';
+import { PublicNewsModule } from 'src/news/public/publicNews.module';
+import { NewsModule } from 'src/news/news.module';
 
 @Module({
   imports: [
@@ -14,6 +16,9 @@ import { RTGuard } from 'src/auth/guards/rt.guard';
     TypeOrmModule.forRootAsync(typeormConfig),
     UserModule,
     AuthModule,
+    PrivateNewsModule,
+    PublicNewsModule,
+    NewsModule,
   ],
   providers: [
     {
