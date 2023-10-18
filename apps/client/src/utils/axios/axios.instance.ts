@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 axiosInstance.interceptors.request.use(async (config) => {
-  const { accessToken, refreshToken } = store.getState().auth;
+  const { accessToken } = store.getState().auth;
 
   config.headers.Authorization = `Bearer ${accessToken}`;
 
@@ -25,7 +25,7 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    const { accessToken, refreshToken } = store.getState().auth;
+    const { refreshToken } = store.getState().auth;
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
