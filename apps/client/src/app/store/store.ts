@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { api } from "./api";
 import { rootReducer as reducer } from "./reducer";
 import { logger } from "./middlewares";
+import { setupListeners } from "@reduxjs/toolkit/query";
 export const store = configureStore({
   reducer,
   middleware(getDefaultMiddleware) {
@@ -10,3 +11,5 @@ export const store = configureStore({
 });
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+setupListeners(store.dispatch);

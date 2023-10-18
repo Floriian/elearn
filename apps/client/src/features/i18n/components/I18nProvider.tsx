@@ -4,5 +4,5 @@ type Props = {
     children: React.ReactNode;
 }
 export function I18NProvider({ children }: Props) {
-    return <></>
+    return <>{children}</>
 }

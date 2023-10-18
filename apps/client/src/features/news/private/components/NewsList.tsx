@@ -1,4 +1,3 @@
-import { Title } from "@/components";
 import { NewsCard } from "@/features"
 import { useGetPrivateNewsQuery } from "@/features/news/private";
 import { Row } from "antd";

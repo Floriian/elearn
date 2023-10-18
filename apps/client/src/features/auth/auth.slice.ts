@@ -16,7 +16,13 @@ export const authSlice = createSlice({
       state.refreshToken = payload.refreshToken;
     },
     signOut: (state) => {
-      state = initialState;
+      const newState: typeof state = {
+        accessToken: "",
+        isAuthenticated: false,
+        refreshToken: "",
+      };
+
+      state = newState;
     },
   },
 });

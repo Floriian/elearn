@@ -1,13 +1,10 @@
-import { store } from "@/app";
 import { AuthPage, Homepage } from "@/features"
 import { ProtectedRoutes } from "@/features/auth/components/ProtectedRoutes";
-import { injectStore } from "@/utils";
 import { Route, Routes } from "react-router-dom"
 
 import "@/styles/main.css"
 
 function App() {
-  injectStore(store);
   return (
     <Routes>
       <Route path="/auth" element={<AuthPage />} />

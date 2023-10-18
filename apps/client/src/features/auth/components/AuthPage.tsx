@@ -11,7 +11,7 @@ export function AuthPage() {
 
     useEffect(() => {
         if (isAuthenticated) navigate("/");
-    }, [isAuthenticated])
+    }, [isAuthenticated, navigate])
 
     return (
         <>

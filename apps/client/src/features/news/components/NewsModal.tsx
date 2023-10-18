@@ -1,6 +1,6 @@
 import { News } from "@/features";
 import { Modal } from "antd";
-import { type Dispatch, type SetStateAction, useState } from "react";
+import { type Dispatch, type SetStateAction } from "react";
 
 type Props = {
     data: News;
