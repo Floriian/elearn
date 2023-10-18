@@ -7,7 +7,6 @@ export const newsPrivateApi = api.injectEndpoints({
       query: () => ({ method: "GET", url: "/news/private" }),
     }),
   }),
-  overrideExisting: false,
 });
 
 export const { useGetPrivateNewsQuery } = newsPrivateApi;

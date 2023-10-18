@@ -8,10 +8,13 @@ import {
     UploadOutlined,
     UserOutlined,
     VideoCameraOutlined,
+    BookOutlined,
+    HomeOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 const { Content, Sider } = Layout;
 import { AppHeader } from "./AppHeader";
+import { useNavigate } from 'react-router-dom';
 
 const items = [
     UserOutlined,
@@ -28,12 +31,34 @@ const items = [
     label: `nav ${index + 1}`,
 }));
 
+const siderLinks = [
+    {
+        label: "Homepage",
+        icon: React.createElement(HomeOutlined),
+        key: "/"
+    },
+    {
+        label: 'Courses',
+        icon: React.createElement(BookOutlined),
+        key: "/courses",
+    }
+]
+
 type Props = {
     children: React.ReactNode;
 };
 
 export function AppLayout({ children }: Props) {
     const [collapsed, setCollapsed] = useState<boolean>(false);
+
+    const navigate = useNavigate();
+
+    const handleClick = ({ key }) => {
+        if (key) {
+            navigate(key);
+        }
+    }
+
     const {
         token: { colorBgContainer },
     } = theme.useToken();
@@ -50,7 +75,7 @@ export function AppLayout({ children }: Props) {
                         position: 'fixed',
                         left: 0,
                     }}>
-                    <Menu theme="dark" defaultSelectedKeys={['']} mode='inline' items={items} />
+                    <Menu theme="dark" defaultSelectedKeys={['']} mode='inline' items={siderLinks} onClick={handleClick} />
                 </Sider>
                 <Content
                     style={{

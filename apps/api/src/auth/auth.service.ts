@@ -7,11 +7,14 @@ import * as argon from 'argon2';
 import { UpdateUserDto } from 'src/user/dto/update-user.dto';
 import { SignInDto } from 'src/auth/dto/sign-in.dto';
 import { InvalidCredentialsException } from 'src/auth/exceptions/InvalidCredentials.exception';
+import { AuthConfig } from 'src/config';
+import { AUTH_CONFIG } from 'src/constants';
 @Injectable()
 export class AuthService {
   constructor(
     private userService: UserService,
     private jwtService: JwtService,
+    private configService: ConfigService,
   ) {}
 
   async signUp(dto: CreateUserDto) {
@@ -63,14 +66,16 @@ export class AuthService {
   }
 
   async getTokens(id: number, email: string) {
+    const { ACCESS_TOKEN, REFRESH_TOKEN } =
+      this.configService.get<AuthConfig>(AUTH_CONFIG);
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
         { sub: id, email },
-        { secret: 'valami', expiresIn: '15m' },
+        { secret: ACCESS_TOKEN, expiresIn: '2s' },
       ),
       this.jwtService.signAsync(
         { sub: id, email },
-        { secret: 'valami2', expiresIn: '7d' },
+        { secret: REFRESH_TOKEN, expiresIn: '7d' },
       ),
     ]);
 
