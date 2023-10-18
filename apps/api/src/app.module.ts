@@ -9,6 +9,7 @@ import { ATGuard } from 'src/auth/guards/at.guard';
 import { PrivateNewsModule } from 'src/news/private/privateNews.module';
 import { PublicNewsModule } from 'src/news/public/publicNews.module';
 import { NewsModule } from 'src/news/news.module';
+import { CoursesModule } from './courses/courses.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { NewsModule } from 'src/news/news.module';
     PrivateNewsModule,
     PublicNewsModule,
     NewsModule,
+    CoursesModule,
   ],
   providers: [
     {
