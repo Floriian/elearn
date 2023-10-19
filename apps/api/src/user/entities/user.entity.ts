@@ -8,6 +8,7 @@ import {
   Repository,
 } from 'typeorm';
 import * as argon from 'argon2';
+import { Roles } from 'src/user/entities/roles';
 @Entity()
 export class User {
   @ApiProperty({
@@ -21,6 +22,12 @@ export class User {
   })
   @Column({ unique: true })
   email: string;
+
+  @ApiProperty({
+    description: 'Role.',
+  })
+  @Column({ default: Roles.MEMBER })
+  role: Roles;
 
   @BeforeInsert()
   @BeforeUpdate()
