@@ -9,12 +9,15 @@ type Props = {
 };
 export function NewsModal({ data, open, setOpen }: Props) {
 
+    const onClick = () => setOpen(false);
+
     return (
         <Modal
             centered
             open={open}
             title={data?.title}
-            onCancel={() => setOpen(false)}
+            onCancel={onClick}
+            onOk={onClick}
         >
             <p>{data?.text}</p>
         </Modal>

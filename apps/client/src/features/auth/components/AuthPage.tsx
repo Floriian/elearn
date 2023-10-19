@@ -16,7 +16,7 @@ export function AuthPage() {
     return (
         <>
             <Space direction="vertical">
-                <Logo />
+                <Logo hasText />
                 <Space style={{ marginLeft: '5rem' }}>
                     <Space direction="horizontal">
                         <AuthCard />

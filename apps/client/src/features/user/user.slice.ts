@@ -8,10 +8,7 @@ export const userSlice = createSlice({
     setUser: (state, { payload }: PayloadAction<User>) => {
       Object.assign(state, payload);
     },
-    setAccessToken: (state, { payload }: PayloadAction<{ token: string }>) => {
-      state.accessToken = payload.token;
-    },
   },
 });
 
-export const { setUser, setAccessToken } = userSlice.actions;
+export const { setUser } = userSlice.actions;

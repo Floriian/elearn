@@ -1,3 +1,4 @@
+import { Logo } from "@/components";
 import { Layout, Menu } from "antd";
 const { Header } = Layout;
 export function AppHeader() {
@@ -9,8 +10,9 @@ export function AppHeader() {
             width: 'auto',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'end'
+            justifyContent: 'space-between'
         }}>
+            <Logo hasText={false} />
             <Menu theme="dark" mode="horizontal" items={new Array(3).fill(null).map((_, index) => ({
                 key: String(index + 1),
                 label: `nav ${index + 1}`

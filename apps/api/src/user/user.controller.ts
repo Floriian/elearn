@@ -19,8 +19,10 @@ import {
   ApiNotFoundResponse,
   ApiOkResponse,
   ApiTags,
+  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { User } from 'src/user/entities/user.entity';
+import { GetUser } from 'src/auth/decorators/getuser.decorator';
 
 @Controller('user')
 @ApiTags('User')
@@ -43,7 +45,7 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
-  @Get()
+  @Get('/list')
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({
     status: HttpStatus.OK,
@@ -55,7 +57,7 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':id')
+  @Get('/list/:id')
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({
     status: HttpStatus.OK,
@@ -69,6 +71,26 @@ export class UserController {
   })
   findOne(@Param('id') id: string) {
     return this.userService.findOne(+id);
+  }
+
+  @Get('/me')
+  @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({
+    status: HttpStatus.OK,
+    description: 'Returns current user.',
+    type: User,
+  })
+  @ApiUnauthorizedResponse({
+    status: HttpStatus.UNAUTHORIZED,
+    description: 'This error happens, when user is not logged in.',
+  })
+  async me(@GetUser('email') email: string) {
+    const findUser = await this.userService.findOneByEmail(email);
+
+    delete findUser.password;
+    delete findUser.refreshToken;
+
+    return findUser;
   }
 
   @Patch(':id')

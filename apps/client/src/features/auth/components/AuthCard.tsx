@@ -5,8 +5,10 @@ import { SignIn, signInSchema } from "@/features/auth/schemas";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useAppDispatch } from "@/app";
-import { signIn } from "@/features";
+import { User, setUser, signIn } from "@/features";
 import { useNavigate } from "react-router-dom";
+import { ApiErrorResponse } from "@/types";
+import { axiosInstance } from "@/utils";
 const flexCenter = {
     width: '100%',
     justifyContent: 'center',
@@ -27,9 +29,13 @@ export function AuthCard() {
             const { data: response } = await axios.post<{ accessToken: string; refreshToken: string }>("http://localhost:3000/api/auth/signin", {
                 ...data,
             })
-            console.log({ response })
             dispatch(signIn({ isAuthenticated: true, ...response }))
-            navigate("/")
+
+            const { data: user } = await axiosInstance.get<User>("/user/me");
+
+            dispatch(setUser(user));
+
+            navigate("/");
 
         } catch (apiError) {
             if (apiError instanceof AxiosError) {
