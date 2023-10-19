@@ -10,6 +10,7 @@ import { PrivateNewsModule } from 'src/news/private/privateNews.module';
 import { PublicNewsModule } from 'src/news/public/publicNews.module';
 import { NewsModule } from 'src/news/news.module';
 import { CoursesModule } from './courses/courses.module';
+import { ClassModule } from './class/class.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { CoursesModule } from './courses/courses.module';
     PublicNewsModule,
     NewsModule,
     CoursesModule,
+    ClassModule,
   ],
   providers: [
     {
