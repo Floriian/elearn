@@ -4,11 +4,13 @@ import {
   BeforeUpdate,
   Column,
   Entity,
+  ManyToMany,
   PrimaryGeneratedColumn,
   Repository,
 } from 'typeorm';
 import * as argon from 'argon2';
 import { Roles } from 'src/user/entities/roles';
+import { Class } from 'src/class/entities/class.entity';
 @Entity()
 export class User {
   @ApiProperty({
