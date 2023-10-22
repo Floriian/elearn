@@ -3,6 +3,7 @@ import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Course, CourseRepository } from 'src/courses/entities/course.entity';
+import { CourseQueryDto } from 'src/courses/dto/course-query.dto';
 
 @Injectable()
 export class CoursesService {
@@ -14,8 +15,17 @@ export class CoursesService {
     return await this.courseRepository.save(createCourseDto);
   }
 
-  async findAll() {
-    return await this.courseRepository.find();
+  async findAll(queries: CourseQueryDto) {
+    const ITEMS_PER_PAGE = 8; //?: should i move this variable to constants.ts?
+    const [result, total] = await this.courseRepository.findAndCount({
+      take: ITEMS_PER_PAGE,
+      skip: (queries.page - 1) * ITEMS_PER_PAGE,
+    });
+
+    return {
+      data: result,
+      count: total,
+    };
   }
 
   findOne(id: number) {

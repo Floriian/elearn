@@ -145,6 +145,9 @@ importers:
       '@reduxjs/toolkit':
         specifier: ^1.9.5
         version: 1.9.5(react-redux@8.1.2)(react@18.2.0)
+      '@uidotdev/usehooks':
+        specifier: ^2.4.0
+        version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
       antd:
         specifier: ^5.9.1
         version: 5.9.1(react-dom@18.2.0)(react@18.2.0)
@@ -3234,6 +3237,17 @@ packages:
       '@typescript-eslint/types': 6.7.0
       eslint-visitor-keys: 3.4.3
     dev: true
+
+  /@uidotdev/usehooks@2.4.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NrpTsZUGsawYxFbEXrd8+FPpfziC4M01GSQgYWOnGa84UiavqVCzCL5bSRe6rfQc4QsHS2rGAA0h63ya/j+p6A==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@vitejs/plugin-react@4.0.4(vite@4.4.9):
     resolution: {integrity: sha512-7wU921ABnNYkETiMaZy7XqpueMnpu5VxvVps13MjmCo+utBdD79sZzrApHawHtVX66cCJQQTXFcjH0y9dSUK8g==}

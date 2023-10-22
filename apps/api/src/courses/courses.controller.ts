@@ -8,12 +8,14 @@ import {
   Delete,
   HttpStatus,
   HttpCode,
+  Query,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Course } from 'src/courses/entities/course.entity';
+import { CourseQueryDto } from 'src/courses/dto/course-query.dto';
 
 @Controller('courses')
 @ApiTags('Courses')
@@ -38,8 +40,8 @@ export class CoursesController {
       'Returns all courses from database, if there is no database returns an empty array.',
   })
   @Get()
-  findAll() {
-    return this.coursesService.findAll();
+  findAll(@Query() query: CourseQueryDto) {
+    return this.coursesService.findAll(query);
   }
 
   @Get(':id')

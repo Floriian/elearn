@@ -1,12 +1,20 @@
-import { CourseCard, useGetCoursesQuery } from "@/features";
+import { Course, CourseCard, useGetCoursesQuery } from "@/features";
+import { Col, Row } from "antd";
 
-export function CourseList() {
-    const { data } = useGetCoursesQuery();
+type Props = {
+    courses: Course[];
+};
+
+export function CourseList({ courses }: Props) {
     return (
         <>
-            {data?.map((course) => (
-                <CourseCard course={course} key={course.id} />
-            ))}
+            <Row>
+                {courses?.map((course) => (
+                    <Col span={6} key={course.id}>
+                        <CourseCard course={course} />
+                    </Col>
+                ))}
+            </Row>
         </>
-    )
+    );
 }
