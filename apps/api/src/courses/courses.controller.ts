@@ -6,22 +6,37 @@ import {
   Patch,
   Param,
   Delete,
+  HttpStatus,
+  HttpCode,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Course } from 'src/courses/entities/course.entity';
 
 @Controller('courses')
-@ApiTags('Course')
+@ApiTags('Courses')
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService) {}
 
   @Post()
+  @HttpCode(HttpStatus.CREATED)
+  @ApiCreatedResponse({
+    status: HttpStatus.CREATED,
+    description: 'Create an course, and returns the created course.',
+    type: Course,
+  })
   create(@Body() createCourseDto: CreateCourseDto) {
     return this.coursesService.create(createCourseDto);
   }
 
+  @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({
+    status: HttpStatus.OK,
+    description:
+      'Returns all courses from database, if there is no database returns an empty array.',
+  })
   @Get()
   findAll() {
     return this.coursesService.findAll();

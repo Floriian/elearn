@@ -7,6 +7,7 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  Repository,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -25,6 +26,15 @@ export class Course {
   title: string;
 
   @ApiProperty({
+    description: 'Course description',
+  })
+  @Column()
+  description: string;
+
+  @OneToMany(() => Class, (c) => c.course)
+  class: Class;
+
+  @ApiProperty({
     title: 'createdAt',
     type: Date,
   })
@@ -37,7 +47,5 @@ export class Course {
   })
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @OneToMany(() => Class, (c) => c.course)
-  class: Class;
 }
+export type CourseRepository = Repository<Course>;
