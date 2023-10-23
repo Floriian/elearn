@@ -16,6 +16,7 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Course } from 'src/courses/entities/course.entity';
 import { CourseQueryDto } from 'src/courses/dto/course-query.dto';
+import { GetUser } from 'src/auth/decorators/getuser.decorator';
 
 @Controller('courses')
 @ApiTags('Courses')
@@ -40,8 +41,8 @@ export class CoursesController {
       'Returns all courses from database, if there is no database returns an empty array.',
   })
   @Get()
-  findAll(@Query() query: CourseQueryDto) {
-    return this.coursesService.findAll(query);
+  findAll(@Query() query: CourseQueryDto, @GetUser('email') email: string) {
+    return this.coursesService.findAll(query, email);
   }
 
   @Get(':id')

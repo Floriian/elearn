@@ -35,6 +35,7 @@ export function CoursePage() {
                     defaultPageSize={8}
                     total={data?.count}
                     onChange={handleOnChange}
+                    defaultCurrent={1}
                 />
             </Space>
         </div>

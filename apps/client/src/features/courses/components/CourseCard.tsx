@@ -14,7 +14,7 @@ export function CourseCard({ course }: Props) {
             style={{ width: 375, marginBottom: '2rem' }}
             cover={<img alt={course.title} width={300} height={200} src="https://picsum.photos/400/500" loading="lazy" />}
             actions={[
-                <Button onClick={() => navigate(`/course/${course.id}`)}>
+                <Button onClick={() => navigate(`/courses/${course.id}`)}>
                     Go To Course
                 </Button>
             ]}>

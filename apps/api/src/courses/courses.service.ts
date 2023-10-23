@@ -7,6 +7,7 @@ import { CourseQueryDto } from 'src/courses/dto/course-query.dto';
 
 @Injectable()
 export class CoursesService {
+  private readonly ITEMS_PER_PAGE: number = 8;
   constructor(
     @InjectRepository(Course)
     private readonly courseRepository: CourseRepository,
@@ -15,11 +16,17 @@ export class CoursesService {
     return await this.courseRepository.save(createCourseDto);
   }
 
-  async findAll(queries: CourseQueryDto) {
-    const ITEMS_PER_PAGE = 8; //?: should i move this variable to constants.ts?
+  async findAll(queries: CourseQueryDto, email: string) {
     const [result, total] = await this.courseRepository.findAndCount({
-      take: ITEMS_PER_PAGE,
-      skip: (queries.page - 1) * ITEMS_PER_PAGE,
+      where: {
+        class: {
+          users: {
+            email,
+          },
+        },
+      },
+      take: this.ITEMS_PER_PAGE,
+      skip: (queries.page - 1) * this.ITEMS_PER_PAGE,
     });
 
     return {

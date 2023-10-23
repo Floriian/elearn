@@ -3,7 +3,8 @@ import { Course } from "@/features";
 import { ApiPaginationResponse } from "@/types";
 
 interface CourseOptions {
-  page: number;
+  page?: number;
+  courseId?: number;
 }
 
 export const courseApi = api.injectEndpoints({
@@ -17,7 +18,11 @@ export const courseApi = api.injectEndpoints({
       },
       providesTags: ["Courses"],
     }),
+    getCourse: builder.query<Course, CourseOptions>({
+      query: ({ courseId }) => ({ method: "GET", url: `/courses/${courseId}` }),
+      providesTags: ["Courses"],
+    }),
   }),
 });
 
-export const { useGetCoursesQuery } = courseApi;
+export const { useGetCoursesQuery, useGetCourseQuery } = courseApi;
