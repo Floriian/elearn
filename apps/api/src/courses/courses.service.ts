@@ -4,6 +4,7 @@ import { UpdateCourseDto } from './dto/update-course.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Course, CourseRepository } from 'src/courses/entities/course.entity';
 import { CourseQueryDto } from 'src/courses/dto/course-query.dto';
+import { User, UserRepository } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class CoursesService {
@@ -11,27 +12,28 @@ export class CoursesService {
   constructor(
     @InjectRepository(Course)
     private readonly courseRepository: CourseRepository,
+    @InjectRepository(User) private readonly userRepository: UserRepository,
   ) {}
   async create(createCourseDto: CreateCourseDto): Promise<Course> {
     return await this.courseRepository.save(createCourseDto);
   }
 
   async findAll(queries: CourseQueryDto, email: string) {
-    const [result, total] = await this.courseRepository.findAndCount({
-      where: {
-        class: {
-          users: {
-            email,
-          },
-        },
-      },
-      take: this.ITEMS_PER_PAGE,
-      skip: (queries.page - 1) * this.ITEMS_PER_PAGE,
-    });
+    const courses = await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.email = :email', { email })
+      .innerJoinAndSelect('user.courses', 'course')
+      .leftJoin('user.classes', 'class')
+      .leftJoin('class.course', 'classCourse')
+      .take(this.ITEMS_PER_PAGE)
+      .skip((queries.page - 1) * this.ITEMS_PER_PAGE)
+      .getRawMany();
+
+    console.log(courses);
 
     return {
-      data: result,
-      count: total,
+      data: courses,
+      count: courses.length,
     };
   }
 

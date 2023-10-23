@@ -55,6 +55,11 @@ export class User {
   @JoinTable()
   courses: Course[];
 
+  @ApiProperty({ description: 'Users joined classes.' })
+  @ManyToMany(() => Class)
+  @JoinTable()
+  classes: Class[];
+
   @Column({ nullable: true })
   refreshToken: string;
 }
