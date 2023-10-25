@@ -1,6 +1,7 @@
 import {
   BookOutlined,
   DatabaseOutlined,
+  EditOutlined,
   HomeOutlined,
 } from "@ant-design/icons";
 import { createElement } from "react";
@@ -15,6 +16,11 @@ export const siderLinks = [
     label: "My Classes",
     icon: createElement(BookOutlined),
     key: "/class",
+  },
+  {
+    label: "Exams",
+    icon: createElement(EditOutlined),
+    key: "/exam",
   },
 ];
 
