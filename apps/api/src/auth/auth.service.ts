@@ -18,7 +18,6 @@ export class AuthService {
   ) {}
 
   async signUp(dto: CreateUserDto) {
-    console.log(dto);
     const user = await this.userService.create(dto);
     const tokens = await this.getTokens(user.id, user.email);
 

@@ -7,8 +7,8 @@ import {
   JoinTable,
   ManyToMany,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
+  Repository,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -17,11 +17,8 @@ export class Class {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true })
   title: string;
-
-  @Column()
-  description: string;
 
   @Column({ generated: 'uuid' })
   inviteCode: string;
@@ -29,6 +26,9 @@ export class Class {
   @ManyToMany(() => User)
   @JoinTable()
   users: User[];
+
+  @ManyToOne(() => User, (user) => user.classes)
+  teachers: User[];
 
   @ApiProperty({
     title: 'createdAt',
@@ -44,3 +44,5 @@ export class Class {
   @UpdateDateColumn()
   updatedAt: Date;
 }
+
+export type ClassRepository = Repository<Class>;

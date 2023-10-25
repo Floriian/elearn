@@ -12,7 +12,7 @@ import {
   Repository,
 } from 'typeorm';
 import * as argon from 'argon2';
-import { Roles } from 'src/user/entities/roles';
+import { Role } from 'src/user/entities/roles';
 import { Class } from 'src/class/entities/class.entity';
 @Entity()
 export class User {
@@ -31,8 +31,8 @@ export class User {
   @ApiProperty({
     description: 'Role.',
   })
-  @Column({ default: Roles.MEMBER })
-  role: Roles;
+  @Column({ default: Role.MEMBER })
+  role: Role;
 
   @BeforeInsert()
   @BeforeUpdate()

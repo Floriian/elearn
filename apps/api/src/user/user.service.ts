@@ -47,7 +47,7 @@ export class UserService {
   ): Promise<Pick<User, 'id' | 'email'>> {
     await this.findOne(id);
 
-    const updatedUser = await this.userRepository.update(
+    await this.userRepository.update(
       { id },
       {
         ...updateUserDto,
