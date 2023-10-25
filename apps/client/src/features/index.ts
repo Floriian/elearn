@@ -3,3 +3,4 @@ export * from "./home";
 export * from "./news";
 export * from "./user";
 export * from "./admin";
+export * from "./class";

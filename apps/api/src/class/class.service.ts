@@ -11,6 +11,8 @@ import { User, UserRepository } from 'src/user/entities/user.entity';
 
 @Injectable()
 export class ClassService {
+  private readonly ITEMS_PER_PAGE = 8;
+
   constructor(
     @InjectRepository(Class) private readonly classRepository: ClassRepository,
     @InjectRepository(User) private readonly userRepository: UserRepository,
@@ -49,16 +51,18 @@ export class ClassService {
     return await this.userRepository.save(user);
   }
 
-  async findAll(email: string) {
-    return await this.classRepository.find({
-      where: {
-        users: {
-          email,
-        },
-      },
+  async findAll(email: string, page: number) {
+    const [result, total] = await this.classRepository.findAndCount({
+      where: { users: { email } },
+      take: this.ITEMS_PER_PAGE,
+      skip: (page - 1) * this.ITEMS_PER_PAGE,
     });
-  }
 
+    return {
+      data: result,
+      count: total,
+    };
+  }
   async findOne(id: number, email: string) {
     return await this.classRepository.findOneBy({
       id,

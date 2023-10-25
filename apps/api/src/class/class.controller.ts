@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ClassService } from './class.service';
 import { CreateClassDto } from './dto/create-class.dto';
@@ -13,6 +14,7 @@ import { UpdateClassDto } from './dto/update-class.dto';
 import { Role } from 'src/user/entities/roles';
 import { Roles } from 'src/decorators/roles.decorator';
 import { GetUser } from 'src/auth/decorators/getuser.decorator';
+import { ClassQueryDto } from 'src/class/dto/class-query.dto';
 
 @Controller('class')
 export class ClassController {
@@ -41,8 +43,8 @@ export class ClassController {
   }
 
   @Get()
-  findAll(@GetUser('email') email: string) {
-    return this.classService.findAll(email);
+  findAll(@GetUser('email') email: string, @Query() query: ClassQueryDto) {
+    return this.classService.findAll(email, +query.page);
   }
 
   @Get(':id')

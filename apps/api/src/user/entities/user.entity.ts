@@ -4,9 +4,6 @@ import {
   BeforeUpdate,
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   Repository,
@@ -48,8 +45,7 @@ export class User {
   password: string;
 
   @ApiProperty({ description: 'Users joined classes.' })
-  @ManyToMany(() => Class)
-  @JoinTable()
+  @OneToMany(() => Class, (classEntity) => classEntity.users)
   classes: Class[];
 
   @Column({ nullable: true })
