@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Course } from 'src/courses/entities/course.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -30,9 +29,6 @@ export class Class {
   @ManyToMany(() => User)
   @JoinTable()
   users: User[];
-
-  @ManyToOne(() => Course, (course) => course.class)
-  course: Course[];
 
   @ApiProperty({
     title: 'createdAt',

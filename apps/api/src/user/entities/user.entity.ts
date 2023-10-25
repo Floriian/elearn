@@ -14,7 +14,6 @@ import {
 import * as argon from 'argon2';
 import { Roles } from 'src/user/entities/roles';
 import { Class } from 'src/class/entities/class.entity';
-import { Course } from 'src/courses/entities/course.entity';
 @Entity()
 export class User {
   @ApiProperty({
@@ -47,13 +46,6 @@ export class User {
   })
   @Column()
   password: string;
-
-  @ApiProperty({
-    description: 'User courses.',
-  })
-  @ManyToMany(() => Course)
-  @JoinTable()
-  courses: Course[];
 
   @ApiProperty({ description: 'Users joined classes.' })
   @ManyToMany(() => Class)

@@ -9,7 +9,6 @@ import { ATGuard } from 'src/auth/guards/at.guard';
 import { PrivateNewsModule } from 'src/news/private/privateNews.module';
 import { PublicNewsModule } from 'src/news/public/publicNews.module';
 import { NewsModule } from 'src/news/news.module';
-import { CoursesModule } from './courses/courses.module';
 import { ClassModule } from './class/class.module';
 
 @Module({
@@ -21,7 +20,6 @@ import { ClassModule } from './class/class.module';
     PrivateNewsModule,
     PublicNewsModule,
     NewsModule,
-    CoursesModule,
     ClassModule,
   ],
   providers: [
