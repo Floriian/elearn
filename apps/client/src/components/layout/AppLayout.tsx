@@ -1,24 +1,12 @@
 import React, { useState } from "react";
-import {
-    AppstoreOutlined,
-    BarChartOutlined,
-    CloudOutlined,
-    ShopOutlined,
-    TeamOutlined,
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-    BookOutlined,
-    HomeOutlined,
-    DatabaseOutlined
-} from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 const { Content, Sider } = Layout;
 import { AppHeader } from "./AppHeader";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "@/features";
+import { setSidebarActiveItem, useUiSidebar, useUser } from "@/features";
 import { Logo } from "@/components";
 import { adminSiderLinks, siderLinks } from "@/utils";
+import { useAppDispatch } from "@/app";
 
 type Props = {
     children: React.ReactNode;
@@ -28,12 +16,16 @@ export function AppLayout({ children }: Props) {
     const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const user = useUser();
-
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const sidebar = useUiSidebar();
+
 
     const handleClick = ({ key }: { key: string }) => {
         if (key) {
             navigate(key);
+            dispatch(setSidebarActiveItem({ key }))
         }
     };
 
@@ -45,7 +37,7 @@ export function AppLayout({ children }: Props) {
                 }}>
                     <Logo hasText={!collapsed} />
                 </div>
-                <Menu theme="dark" defaultSelectedKeys={['/']} mode="inline" items={
+                <Menu theme="dark" defaultSelectedKeys={[sidebar.selected]} mode="inline" items={
                     user.role === "admin" ? adminSiderLinks : siderLinks
                 } onClick={handleClick} />
             </Sider>

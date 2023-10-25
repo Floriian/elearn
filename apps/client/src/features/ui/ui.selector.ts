@@ -2,7 +2,10 @@ import { RootState } from "@/app";
 import { createSelector } from "@reduxjs/toolkit";
 
 function rootSelector(state: RootState) {
-  return state.user;
+  return state.ui;
 }
 
-export const getUser = createSelector(rootSelector, (state) => state);
+export const getUISidebar = createSelector(
+  rootSelector,
+  (state) => state.sidebar,
+);

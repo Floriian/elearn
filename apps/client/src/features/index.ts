@@ -4,3 +4,4 @@ export * from "./news";
 export * from "./user";
 export * from "./admin";
 export * from "./class";
+export * from "./ui";

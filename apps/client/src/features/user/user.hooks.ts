@@ -1,5 +1,4 @@
 import { useAppSelector } from "@/app";
-import { getUser, getUserAccessToken } from "@/features";
+import { getUser } from "@/features";
 
 export const useUser = () => useAppSelector(getUser);
-export const useToken = () => useAppSelector(getUserAccessToken);

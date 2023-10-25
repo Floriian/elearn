@@ -1,3 +1,4 @@
+import { uiSlice } from "@/features/ui/ui.slice";
 import { api } from "./api";
 import { authSlice } from "@/features/auth/auth.slice";
 import { userSlice } from "@/features/user/user.slice";
@@ -6,4 +7,5 @@ export const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
   [authSlice.name]: authSlice.reducer,
   [userSlice.name]: userSlice.reducer,
+  [uiSlice.name]: uiSlice.reducer,
 });
