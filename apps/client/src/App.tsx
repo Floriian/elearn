@@ -5,6 +5,7 @@ import { injectStore } from "@/utils";
 import { store } from "./app/store/store";
 
 import "@/styles/main.css"
+import { NotFound } from "@/components";
 
 function App() {
   injectStore(store)
@@ -20,7 +21,9 @@ function App() {
 
         <Route path="/admin">
           <Route index element={<AdminPage />} />
-          Ro</Route>
+        </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   )
