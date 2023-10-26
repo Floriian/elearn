@@ -4,7 +4,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -23,8 +22,7 @@ export class Class {
   @Column({ generated: 'uuid' })
   inviteCode: string;
 
-  @ManyToMany(() => User)
-  @JoinTable()
+  @ManyToMany(() => User, (user) => user.classes)
   users: User[];
 
   @ManyToOne(() => User, (user) => user.classes)

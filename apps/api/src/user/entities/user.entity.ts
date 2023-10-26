@@ -4,7 +4,8 @@ import {
   BeforeUpdate,
   Column,
   Entity,
-  OneToMany,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   Repository,
 } from 'typeorm';
@@ -45,7 +46,8 @@ export class User {
   password: string;
 
   @ApiProperty({ description: 'Users joined classes.' })
-  @OneToMany(() => Class, (classEntity) => classEntity.users)
+  @ManyToMany(() => Class, (classEntity) => classEntity.users)
+  @JoinTable()
   classes: Class[];
 
   @Column({ nullable: true })

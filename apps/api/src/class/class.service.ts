@@ -37,7 +37,7 @@ export class ClassService {
 
     const user = await this.userService.findOneByEmail(email);
 
-    user.classes.push(findClassByInviteCode);
+    if (user) user.classes.push(findClassByInviteCode);
 
     const result = await this.userRepository.save(user);
 
@@ -52,10 +52,18 @@ export class ClassService {
   }
 
   async findAll(email: string, page: number) {
+    const user = await this.userService.findOneByEmail(email);
+
     const [result, total] = await this.classRepository.findAndCount({
-      where: { users: { email } },
+      where: { users: { id: user.id } },
       take: this.ITEMS_PER_PAGE,
       skip: (page - 1) * this.ITEMS_PER_PAGE,
+      select: {
+        users: true,
+      },
+      relations: {
+        users: true,
+      },
     });
 
     return {
@@ -64,12 +72,19 @@ export class ClassService {
     };
   }
   async findOne(id: number, email: string) {
-    return await this.classRepository.findOneBy({
-      id,
-      users: {
+    const { classes } = await this.userRepository.findOne({
+      where: {
         email,
+        classes: {
+          id,
+        },
       },
+      relations: ['classes'],
     });
+
+    if (classes) throw new ClassNotFoundException();
+
+    return classes;
   }
 
   update(id: number, updateClassDto: UpdateClassDto) {

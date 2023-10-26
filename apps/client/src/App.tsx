@@ -1,4 +1,4 @@
-import { AdminPage, AuthPage, Homepage, ClassPage } from "@/features"
+import { AdminPage, AuthPage, Homepage, ClassPage, ClassDetails } from "@/features"
 import { ProtectedRoutes } from "@/features/auth/components/ProtectedRoutes";
 import { Route, Routes } from "react-router-dom"
 import { injectStore } from "@/utils";
@@ -17,6 +17,7 @@ function App() {
 
         <Route path="/class">
           <Route index element={<ClassPage />} />
+          <Route path=":id" element={<ClassDetails />} />
         </Route>
 
         <Route path="/admin">

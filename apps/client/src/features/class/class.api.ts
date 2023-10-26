@@ -14,7 +14,19 @@ export const classApi = api.injectEndpoints({
       query: ({ id }) => ({ method: "GET", url: `/class/${id}` }),
       providesTags: ["Class"],
     }),
+
+    joinClass: builder.mutation<unknown, { inviteCode: string }>({
+      query: ({ inviteCode }) => ({
+        method: "POST",
+        url: `/class/join/${inviteCode}`,
+      }),
+      invalidatesTags: ["Class"],
+    }),
   }),
 });
 
-export const { useGetClassByIdQuery, useGetClassesQuery } = classApi;
+export const {
+  useGetClassByIdQuery,
+  useGetClassesQuery,
+  useJoinClassMutation,
+} = classApi;
