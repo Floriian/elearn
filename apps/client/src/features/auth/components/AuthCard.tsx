@@ -26,7 +26,7 @@ export function AuthCard() {
 
     const submitData = async (data: SignIn) => {
         try {
-            const { data: response } = await axios.post<{ accessToken: string; refreshToken: string }>("http://localhost:3000/api/auth/signin", {
+            const { data: response } = await axios.post<{ accessToken: string; refreshToken: string }>("http://localhost:3001/api/auth/signin", {
                 ...data,
             })
             dispatch(signIn({ isAuthenticated: true, ...response }))

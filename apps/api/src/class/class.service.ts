@@ -36,10 +36,9 @@ export class ClassService {
   async joinClass(inviteCode: string, email: string) {
     console.log(inviteCode);
 
-    const findClassByInviteCode = await this.classRepository
-      .createQueryBuilder()
-      .where('inviteCode = :inviteCode', { inviteCode })
-      .getRawOne();
+    const findClassByInviteCode = await this.classRepository.findOneBy({
+      inviteCode,
+    });
 
     console.log({ findClassByInviteCode });
 
@@ -49,13 +48,15 @@ export class ClassService {
       where: {
         email,
       },
+      select: {
+        classes: true,
+      },
+      relations: ['classes'],
     });
 
-    const result = await this.userRepository
-      .createQueryBuilder('user')
-      .relation(User, 'classes')
-      .of(user)
-      .add(findClassByInviteCode);
+    user.classes = [...user.classes, findClassByInviteCode];
+
+    const result = await this.userRepository.save(user);
 
     return result;
   }

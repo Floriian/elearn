@@ -28,15 +28,16 @@ export class ClassController {
 
   @Post('/join/:inviteCode')
   join(
-    @Param(':inviteCode') inviteCode: string,
+    @Param('inviteCode') inviteCode: string,
     @GetUser('email') email: string,
   ) {
+    console.log({ inviteCode });
     return this.classService.joinClass(inviteCode, email);
   }
 
   @Post('/leave/:classId')
   leaveClass(
-    @Param(':classId') classId: string,
+    @Param('classId') classId: string,
     @GetUser('email') email: string,
   ) {
     return this.classService.leaveClass(+classId, email);
