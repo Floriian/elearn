@@ -3,7 +3,7 @@ import { store as reduxStore } from "../../app/store/store";
 import { string } from "zod";
 import { setTokens } from "@/features";
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "http://localhost:3001/api",
 });
 
 let store: typeof reduxStore;
@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
       const { data } = await axios.get<{
         accessToken: string;
         refreshToken: string;
-      }>("http://localhost:3000/api/auth/refresh", {
+      }>("http://localhost:3001/api/auth/refresh", {
         headers: {
           Authorization: "Bearer " + refreshToken,
         },

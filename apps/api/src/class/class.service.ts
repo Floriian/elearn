@@ -1,4 +1,8 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateClassDto } from './dto/create-class.dto';
 import { UpdateClassDto } from './dto/update-class.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -30,18 +34,29 @@ export class ClassService {
   }
 
   async joinClass(inviteCode: string, email: string) {
-    const findClassByInviteCode = await this.classRepository.findOneBy({
-      inviteCode,
-    });
+    console.log(inviteCode);
+
+    const findClassByInviteCode = await this.classRepository
+      .createQueryBuilder()
+      .where('inviteCode = :inviteCode', { inviteCode })
+      .getRawOne();
+
+    console.log({ findClassByInviteCode });
+
     if (!findClassByInviteCode) throw new ClassNotFoundException();
 
-    const user = await this.userService.findOneByEmail(email);
+    const user = await this.userRepository.findOne({
+      where: {
+        email,
+      },
+    });
 
-    if (user) user.classes.push(findClassByInviteCode);
+    const result = await this.userRepository
+      .createQueryBuilder('user')
+      .relation(User, 'classes')
+      .of(user)
+      .add(findClassByInviteCode);
 
-    const result = await this.userRepository.save(user);
-
-    if (!result) throw new InternalServerErrorException();
     return result;
   }
 
